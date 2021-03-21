@@ -30,7 +30,7 @@ async function getPrices(message){
     const { ethereum } = data
 //  const { ethereum classic } = data
     const { litecoin } = data
-    const { neo} = data
+    const { neo } = data
     const { stellar } = data
     const { uniswap } = data
     const { theta } = data
@@ -43,31 +43,45 @@ async function getPrices(message){
     const { sushiswap } = data
     const { ravencoin } = data
 //  const { yearn-finance } = data
-//  const { ocenan protocol} = data
+//  const { ocean protocol} = data
     const { reef } = data 
 
-    console.log('____________________________________________')
-    console.log(data[`binance-coin`].usd)
-    console.log(data[`1inch`].usd)
-    console.log(aave.usd)
-    console.log(bitcoin.usd)
-    console.log(data[`bitcoin-cash`].usd)
-    console.log(cardano.usd) 
-    console.log(chainlink.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
-    console.log(.usd)
+// --------------------------------------------------------------------
+//it works?
+    console.log(data[`binance-coin`].usd + '1')
+    console.log(data[`1inch`].usd + '2')
+    console.log(aave.usd + '3')
+    console.log(bitcoin.usd + '4')
+    console.log(data[`bitcoin-cash`].usd + '5')
+    console.log(cardano.usd + '6') 
+    console.log(chainlink.usd + '7')
+    console.log(chiliz.usd + '8')
+    console.log(polkadot.usd + '9')
+    console.log(cosmos.usd + '10')
+    console.log(dash.usd + '11')
+    console.log(dogecoin.usd + '12')
+    console.log(ethereum.usd +'13')
+    console.log(data[`ethereum-classic`].usd + '14')
+    console.log(litecoin.usd + '15')
+    console.log(neo.usd + '16')
+    console.log(stellar.usd + '17')
+    console.log(uniswap.usd + '18')
+    console.log(theta.usd + '19')
+    console.log(vechain.usd + '20')
+    console.log(ripple.usd + '21')
+    console.log(zilliqa.usd + '22')
+    console.log(eos.usd + '23')
+    console.log(filecoin.usd + '24')
+    console.log(elrond.usd + '25')
+    console.log(sushiswap.usd + '26')
+    console.log(ravencoin.usd + '27')
+    console.log(data[`yearn.finance`].usd + '28')
+    console.log(data[`ocean-protocol`].usd + '29')
+    console.log(reef.usd + '30')} 
 
+    
 
+setInterval(getPrices, 1000)
 
-} 
+// yep it works now all we need to do is call this function 
 connectToMongoDB()

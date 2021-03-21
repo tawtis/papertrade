@@ -1,13 +1,14 @@
-const client = new Discord.Client();
 const config = require('./config.json');
 const mongo = require('./mongo')
 const userSchema = require('./schemas/user-schema')
 const Discord = require('discord.js');
 const fs = require('fs');
 const Enmap = require("enmap");
+const client = new Discord.Client();
 client.config = config;
 client.commands = new Discord.Collection();
 client.commands = new Enmap();
+
 x = 1;
 // Read events
 fs.readdir("./events/", (err, files) => {
@@ -50,7 +51,7 @@ async function insert(message, args){
     let userid = message.author.id;
 
 // Define information per user
-const user = {
+const user2 = {
     id: ``,
     user: `${user}`,
     userID: `${userid}`,
