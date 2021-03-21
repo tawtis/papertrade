@@ -15,6 +15,8 @@ const Enmap = require("enmap");
 client.config = config;
 client.commands = new Enmap();
 
+
+// Read events
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error;
   files.forEach((file) => {
@@ -27,6 +29,7 @@ fs.readdir("./events/", (err, files) => {
   console.log("------------------------------------------------");
 });
 
+// Read commands
 fs.readdir("./commands/", async (err, files) => {
   files.forEach((file) => {
     if (!file.endsWith(".js")) return;
@@ -38,35 +41,32 @@ fs.readdir("./commands/", async (err, files) => {
   console.log("------------------------------------------------");
 });
 
+// Log UPRs
   process.on("unhandledRejection", (error) => {
   console.error("UNHANDLED PROMISE REJECTION:", error);
 });
+// END OF STARTUP PROCESS ---------------------------------------
 
+
+// Connect to database
 const connectToMongoDB = async () => {
-  await mongo().then(async (mongoose) => {
-    try{
-      console.log('Connected')
+    await mongo().then(async (mongoose) => {
+        try{console.log('DB: Connected')}finally{mongoose.connection.close}})}
 
-
-    }finally{
-      mongoose.connection.close
-    }
-  })
-}
-
+// Log information to database
 async function insert(message, args){
+    let id = args[0];
+    let user = message.author.username;
+    let userid = message.author.id;
+    let capital = args[1];
+    let assets = args.splice(2).join(" ")
+    message.channel.send(`${user}`)
+    message.channel.send(`${id}`);
+    message.channel.send(`${userid}`)
+    message.channel.send(`${capital}`)
+    message.channel.send(`${assets}`)
 
-  let id = args[0];
-  let user = message.author.username;
-  let userid = message.author.id;
-  let capital = args[1];
-  let assets = args.splice(2).join(" ")
-  message.channel.send(`${user}`)
-  message.channel.send(`${id}`);
-  message.channel.send(`${userid}`)
-  message.channel.send(`${capital}`)
-  message.channel.send(`${assets}`)
-
+// Define information per user
   const user2 = {
     ID: `${id}`,
     User: `${user}`,
@@ -106,19 +106,6 @@ connectToMongoDB()
 client.once('ready', () => {
 	console.log('Ready!');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 async function doshit(message) {
 
