@@ -67,39 +67,30 @@ async function insert(message, args){
     message.channel.send(`${assets}`)
 
 // Define information per user
-  const user2 = {
+const user2 = {
     ID: `${id}`,
     User: `${user}`,
     UserID: `${userid}`,
     Capital: `${capital}`,
     Assets: `${assets}`
-  }
-  
-  await new userSchema(user2).save()
+}
+await new userSchema(user2).save()
+console.log(`USER LOGGED: ${user}`)
+message.channel.send("Data has been logged to the database")
 
-  console.log(`USER LOGGED: ${user}`)
-
-  message.channel.send("Data has been saved to the database")
-
-  if (!assets){
+if (!assets){
     return message.channel.send('Not enough info: $data <id> <capital> <assets>')
-  } else{
+} else{
     const dataEmbed = new Discord.MessageEmbed()
-      .setColor('ff0000')
-      .setTitle('Data')
-      .addFields(
-
+    .setColor('ff0000')
+    .setTitle('Data')
+    .addFields(
         {name: 'ID', value: `${id}`, inline: false},
         {name: 'User', value: `${user}`, inline: false},
         {name: 'UserID', value: `${userid}`, inline: false},
         {name: 'Capital', value: `${capital}`, inline: false},
-        {name: 'Assets', value: `${assets}`, inline: false}
-
-      )
-
-    message.channel.send(dataEmbed)
-  }
-}
+        {name: 'Assets', value: `${assets}`, inline: false})
+        message.channel.send(dataEmbed)}}
 
 connectToMongoDB()
 
