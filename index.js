@@ -3,18 +3,44 @@ const fs = require('fs');
 const fetch = require("node-fetch");
 const mongo = require('./mongo')
 const userSchema = require('./schemas/user-schema')
-
 const { prefix, token } = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+const Discord = require('discord.js');
+const moment = require('moment');
+const config = require('./config');
+const client = new Discord.Client();
+const fs = require("fs");
+const Enmap = require("enmap");
+client.config = config;
+client.commands = new Enmap();
 
+fs.readdir("./events/", (err, files) => {
+  if (err) return console.error;
+  files.forEach((file) => {
+    if (!file.endsWith(".js")) return;
+    const evt = require(`./events/${file}`);
+    let evtName = file.split(".")[0];
+    console.log(`LOADED: '${evtName}'`);
+    client.on(evtName, evt.bind(null, client));
+  });
+  console.log("------------------------------------------------");
+});
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+fs.readdir("./commands/", async (err, files) => {
+  files.forEach((file) => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/${file}`);
+    let cmdName = file.split(".")[0];
+    console.log(`LOADED: '${cmdName}'`);
+    client.commands.set(cmdName, props);
+  });
+  console.log("------------------------------------------------");
+});
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-}
+  process.on("unhandledRejection", (error) => {
+  console.error("UNHANDLED PROMISE REJECTION:", error);
+});
 
 const connectToMongoDB = async () => {
   await mongo().then(async (mongoose) => {
@@ -49,10 +75,10 @@ async function insert(message, args){
     Assets: `${assets}`
   }
   
-
   await new userSchema(user2).save()
 
-  console.log(`${user}` + "'s info has been saved")
+  console.log(`USER LOGGED: ${user}`)
+
   message.channel.send("Data has been saved to the database")
 
   if (!assets){
@@ -152,5 +178,3 @@ client.on('message', message => {
 });
 
 client.login(token);
-
-//Atomツ - no delete plez
