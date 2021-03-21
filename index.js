@@ -91,12 +91,7 @@ if (!assets){
         {name: 'Capital', value: `${capital}`, inline: false},
         {name: 'Assets', value: `${assets}`, inline: false})
         message.channel.send(dataEmbed)}}
-
 connectToMongoDB()
-
-client.once('ready', () => {
-	console.log('Ready!');
-});
 
 async function doshit(message) {
 
@@ -110,7 +105,7 @@ async function doshit(message) {
 
       const priceEmbed = new Discord.MessageEmbed()
         .setColor('ffff00')
-        .setTitle('Bitcoin')
+        .setTitle('Bitcoin Live Statistics')
         .addFields(
 
             {name: 'Price', value: `$${bitcoin.usd}`, inline: true},
