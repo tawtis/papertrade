@@ -3,10 +3,6 @@ const mongoPath = 'mongodb+srv://netninja:tickerlive@cluster0.vd6ei.mongodb.net/
 
 module.exports = async () => {
     await mongoose.connect(mongoPath, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
-
-    return mongoose 
- 
-};
+    useNewUrlParser: true,
+    useUnifiedTopology: true})
+    return mongoose}; 

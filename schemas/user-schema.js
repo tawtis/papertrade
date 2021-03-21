@@ -1,21 +1,22 @@
 const mongoose = require('mongoose')
 
-const reqString = {
+const reqStr = {
   type: String,
   required: true,
 }
-const reqNumber = {
+const reqNum = {
   type: Number,
   required: true,
 }
 
 const userSchema = mongoose.Schema({
 
-  ID: Number,
-  User: String,
-  UserID: Number,
-  Capital: Number,
-  Assets: String,
+    id: reqNum,
+    user: reqStr,
+    userID: reqNum,
+    capital: reqNum,
+    unrealisedProfit: reqNum,
+    realisedProfit: reqNum,
 
 })
 
