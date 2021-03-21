@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "enmap": "^5.8.4",
     "express": "^4.17.1",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.1",

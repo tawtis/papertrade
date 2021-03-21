@@ -1,0 +1,1 @@
+//Get only their assets

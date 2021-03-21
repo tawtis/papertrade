@@ -9,14 +9,14 @@ const reqNum = {
   required: true,
 }
 
+
 const userSchema = mongoose.Schema({
 
-    id: reqNum,
     user: reqStr,
     userID: reqNum,
     capital: reqNum,
-    unrealisedProfit: reqNum,
-    realisedProfit: reqNum,
+    unrealisedProfit: Number,
+    realisedProfit: Number,
 
 })
 
